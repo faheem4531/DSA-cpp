@@ -1,3 +1,4 @@
+//**************************************This expanded menue program is just to understand array handling or functions as well- @MUSHAB_FAHEEM
 #include <iostream>
 using namespace std;
 
@@ -162,6 +163,7 @@ int main()
          << "1. Linear Search" << endl
          << "2. Binary Searching " << endl
          << "3 Exit " << endl;
+    cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
     {
