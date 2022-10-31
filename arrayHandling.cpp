@@ -76,7 +76,7 @@ public:
     }
     n--;
   }
-  void sortingArray() // new function added (under test)
+  void sortingArray()
   {
     char ch;
     for (int counter = 1; counter < n; counter++)
@@ -106,29 +106,22 @@ public:
     index = searching(item);
     array[index] = newItem;
   }
-  void sortingArrayChecker()
+  bool sortingArrayChecker()
   {
-    int flag;
-    for (int i = 0; i < n; i++)
-    {
-      cout << array[i] << '\t';
-    }
-    for (int i = 0; i < n; i++)
+    bool flag;
+    for (int i = 0; i < n - 1; i++)
     {
       if (array[i] < array[i + 1])
       {
-        flag = 1;
-        cout << "your flag at  " << flag << "\t" << array[i] << endl;
+        flag = true;
       }
       else
       {
-        flag = 0;
+        flag = false;
         break;
       }
     }
-    cout << endl
-         << "At the end your flag is = "
-         << flag;
+    return flag;
   }
 };
 
@@ -138,6 +131,11 @@ int main()
 {
   cout << "Total index you want for an array" << endl;
   cin >> n;
+  int backup;
+  // la.setArray();
+  // backup = la.sortingArrayChecker();
+  // cout << "Your return value is " << backup << endl;
+  // la.showArray();
   int choice, value;
   // char ch;
   while (1)
@@ -231,31 +229,29 @@ int binarySearcher() //                                     Binary Search Engine
 {
   int var, returnBack;
   char ch;
-  la.sortingArrayChecker();
-  // cout << "Result is - " << returnBack << endl;
+  returnBack = la.sortingArrayChecker();
+  if (returnBack == 0)
+  {
+    cout << "ErRoR!  Your array is not arranged press enter to continue..." << endl;
+    ch = cin.get();
+    ch = cin.get();
+    cout << "Do you want to arrange you array ? " << endl
+         << "1. To Arrange your array" << endl
+         << "2. to move back" << endl;
+    cin >> var;
 
-  // if (returnBack == 0)
-  // {
-  //   cout << "ErRoR!  Your array is not arranged press enter to continue..." << endl;
-  //   ch = cin.get();
-  //   ch = cin.get();
-  //   cout << "Do you want to arrange you array ? " << endl
-  //        << "1. To Arrange your array" << endl
-  //        << "2. to move back" << endl;
-  //   cin >> var;
-
-  //   if (var == 1)
-  //   {
-  //     la.sortingArray();
-  //   }
-  //   else if (var == 2)
-  //   {
-  //     return 0;
-  //   }
-  // }
-  // else
-  // {
-  //   cout << "under processs"s;
-  // }
+    if (var == 1)
+    {
+      la.sortingArray();
+    }
+    else if (var == 2)
+    {
+      return 0;
+    }
+  }
+  else
+  {
+    cout << "under processs"s;
+  }
   return 1;
 }
