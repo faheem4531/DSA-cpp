@@ -6,6 +6,7 @@ int insertMenue();
 void deletion();
 void searchHandler();
 int binarySearcher();
+int functionsHub();
 //********************************    Global variable
 int n;
 //********************************    Class
@@ -123,6 +124,27 @@ public:
     }
     return flag;
   }
+  int binarySearcherEmulator(int value)
+  {
+    int start, end;
+    start = 0;
+    end = n - 1;
+    while (start <= end)
+    {
+      int mid = end;
+      if (array[mid] == value)
+      {
+        return mid;
+      }
+      else if (array[mid] > value)
+      {
+        end = mid - 1;
+      }
+      else
+        start = mid + 1;
+    }
+    return -1;
+  }
 };
 
 //********************************************************Main Function
@@ -132,10 +154,6 @@ int main()
   cout << "Total index you want for an array" << endl;
   cin >> n;
   int backup;
-  // la.setArray();
-  // backup = la.sortingArrayChecker();
-  // cout << "Your return value is " << backup << endl;
-  // la.showArray();
   int choice, value;
   // char ch;
   while (1)
@@ -187,7 +205,7 @@ int main()
   }
 }
 
-//******************************************** Functions Definations
+//******************************************************************* Functions Definations
 int insertMenue() //                                       Insert item handler
 {
   int position, value;
@@ -199,7 +217,7 @@ int insertMenue() //                                       Insert item handler
   return 0;
 }
 
-void deletion() //                                          Dellete item handler
+void deletion() //                                         Dellete item handler
 {
   int value, position;
   cout << "Enter the value you want to remove \t";
@@ -213,7 +231,7 @@ void deletion() //                                          Dellete item handler
     la.deleteIndex(position);
 }
 
-void searchHandler() //                                     Linear search handler
+void searchHandler() //                                    Linear search handler
 {
   int value, temp;
   cout << "Enter value you want to search " << endl;
@@ -225,9 +243,9 @@ void searchHandler() //                                     Linear search handle
     cout << "Your value found at index " << temp << endl;
 }
 
-int binarySearcher() //                                     Binary Search Engine
+int binarySearcher() //                                    Binary Search Engine
 {
-  int var, returnBack;
+  int var, returnBack, searchItem, itemIndex;
   char ch;
   returnBack = la.sortingArrayChecker();
   if (returnBack == 0)
@@ -251,7 +269,17 @@ int binarySearcher() //                                     Binary Search Engine
   }
   else
   {
-    cout << "under processs"s;
+    cout << "Enter the item you want to deal with " << endl;
+    cin >> searchItem;
+    itemIndex = la.binarySearcherEmulator(searchItem);
+    if (itemIndex == (-1))
+    {
+      cout << "Item not found " << endl;
+    }
+    else
+      cout << "Searching index is " << itemIndex << endl;
   }
   return 1;
 }
+
+int functionsHub()
