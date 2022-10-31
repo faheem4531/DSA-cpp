@@ -6,7 +6,8 @@ int insertMenue();
 void deletion();
 void searchHandler();
 int binarySearcher();
-int functionsHub();
+int linearHub();
+int binaryHub();
 //********************************    Global variable
 int n;
 //********************************    Class
@@ -151,53 +152,26 @@ public:
 MyArrayManagment la(n);
 int main()
 {
-  cout << "Total index you want for an array" << endl;
-  cin >> n;
+  // char ch;
   int backup;
   int choice, value;
-  // char ch;
   while (1)
   {
     // system("cls");
-    cout << endl
-         << "1. Set array" << endl
-         << "2. Insert " << endl
-         << "3. Delete" << endl
-         << "4. Search" << endl
-         << "5. Update" << endl
-         << "6. Show" << endl
-         << "7. Sorting Array" << endl
-         << "8. Binary Search" << endl
-         << "9. Exit" << endl;
-    cout << "Enter your choice: ";
+    cout << "which Seaching You want to go for " << endl
+         << "1. Linear Search" << endl
+         << "2. Binary Searching " << endl
+         << "3 Exit " << endl;
     cin >> choice;
     switch (choice)
     {
     case 1:
-      la.setArray();
+      linearHub();
       break;
     case 2:
-      insertMenue();
+      binaryHub();
       break;
     case 3:
-      deletion();
-      break;
-    case 4:
-      searchHandler();
-      break;
-    case 5:
-      la.updation();
-      break;
-    case 6:
-      la.showArray();
-      break;
-    case 7:
-      la.sortingArray();
-      break;
-    case 8:
-      binarySearcher();
-      break;
-    case 9:
       return 0;
     }
     // ch = cin.get();
@@ -282,4 +256,110 @@ int binarySearcher() //                                    Binary Search Engine
   return 1;
 }
 
-int functionsHub()
+int linearHub()
+{
+  int choice;
+  // char ch;
+  while (1)
+  {
+    // system("cls");
+    cout << endl
+         << "1. Set Array index" << endl
+         << "2. Set array" << endl
+         << "3. Sorting Array" << endl
+         << "4. Insert " << endl
+         << "5. Search" << endl
+         << "6. Delete" << endl
+         << "7. Update" << endl
+         << "8. Show" << endl
+         << "9. Return Back" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      cout << "Total index you want for an array" << endl;
+      cin >> n;
+      break;
+    case 2:
+      la.setArray();
+      break;
+    case 3:
+      la.sortingArray();
+      break;
+    case 4:
+      insertMenue();
+      break;
+    case 5:
+      searchHandler();
+      break;
+    case 6:
+      deletion();
+      break;
+    case 7:
+      la.updation();
+      break;
+    case 8:
+      la.showArray();
+      break;
+    case 9:
+      return 0;
+    }
+    // ch = cin.get();
+    // ch = cin.get();
+  }
+}
+
+int binaryHub()
+{
+  int choice;
+  // char ch;
+  while (1)
+  {
+    // system("cls");
+    cout << endl
+         << "1. Set Array index" << endl
+         << "2. Set array" << endl
+         << "3. Sorting Array" << endl
+         << "4. Insert " << endl
+         << "5. Search" << endl
+         << "6. Delete" << endl
+         << "7. Update" << endl
+         << "8. Show" << endl
+         << "9. Return Back" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      cout << "Total index you want for an array" << endl;
+      cin >> n;
+      break;
+    case 2:
+      la.setArray();
+      break;
+    case 3:
+      la.sortingArray();
+      break;
+    case 4:
+      insertMenue();
+      break;
+    case 5:
+      binarySearcher();
+      break;
+    case 6:
+      deletion();
+      break;
+    case 7:
+      la.updation();
+      break;
+    case 8:
+      la.showArray();
+      break;
+    case 9:
+      return 0;
+    }
+    // ch = cin.get();
+    // ch = cin.get();
+  }
+}
