@@ -9,18 +9,19 @@ void searchHandler();
 int binarySearcher(int);
 int linearHub();
 int binaryHub();
+void searcher();
 //********************************    Global variable
 int n;
 //********************************    Class
 class MyArrayManagment
 {
 private:
-  int array[0];
+  int array[50];
 
 public:
   MyArrayManagment(int n)
   {
-    array[0] = array[n];
+    array[n];
   }
   void showArray()
   {
@@ -118,7 +119,7 @@ public:
     bool flag;
     for (int i = 0; i < n - 1; i++)
     {
-      if (array[i] < array[i + 1])
+      if (array[i] <= array[i + 1])
       {
         flag = true;
       }
@@ -263,6 +264,20 @@ int binarySearcher(int searchItem) //                                    Binary 
   return 0;
 }
 
+void searcher()
+{
+  int searchItem, searchedIndex;
+  cout << "Enter the value you want to search \t";
+  cin >> searchItem;
+  searchedIndex = binarySearcher(searchItem);
+  if (searchedIndex == (-1))
+  {
+    cout << "Searched item not found " << endl;
+  }
+  else
+    cout << "Your value found at index " << searchedIndex << endl;
+}
+
 int linearHub()
 {
   int choice;
@@ -319,7 +334,7 @@ int linearHub()
 
 int binaryHub()
 {
-  int choice, searchItem;
+  int choice, searchItem, searchedIndex;
   // char ch;
   while (1)
   {
@@ -352,9 +367,7 @@ int binaryHub()
       insertMenue();
       break;
     case 5:
-      cout << "Enter the value you want to search \t";
-      cin >> searchItem;
-      binarySearcher(searchItem);
+      searcher();
       break;
     case 6:
       deletion(1);
