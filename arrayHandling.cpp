@@ -4,9 +4,9 @@ using namespace std;
 
 //********************************    Functions Decleration
 int insertMenue();
-void deletion();
+void deletion(int);
 void searchHandler();
-int binarySearcher();
+int binarySearcher(int);
 int linearHub();
 int binaryHub();
 //********************************    Global variable
@@ -61,7 +61,7 @@ public:
       n++;
     }
   }
-  int searching(int element)
+  int linearSearching(int element)
   {
     for (int i = 0; i < n; i++)
     {
@@ -99,14 +99,18 @@ public:
     ch = cin.get();
     ch = cin.get();
   }
-  void updation()
+  void updation(int x)
   {
     int item, newItem, index;
     cout << "Enter the value you want to replace ";
     cin >> item;
     cout << "replace with...? ";
     cin >> newItem;
-    index = searching(item);
+    if (x == 0)
+      index = linearSearching(item);
+    else
+      index = binarySearcherEmulator(item);
+
     array[index] = newItem;
   }
   bool sortingArrayChecker()
@@ -162,7 +166,7 @@ int main()
     cout << "which Seaching You want to go for " << endl
          << "1. Linear Search" << endl
          << "2. Binary Searching " << endl
-         << "3 Exit " << endl;
+         << "3. Exit " << endl;
     cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
@@ -193,12 +197,20 @@ int insertMenue() //                                       Insert item handler
   return 0;
 }
 
-void deletion() //                                         Dellete item handler
+void deletion(int x) //                                         Dellete item handler
 {
   int value, position;
   cout << "Enter the value you want to remove \t";
   cin >> value;
-  position = la.searching(value);
+  {
+    if (x == 0)
+    {
+      position = la.linearSearching(value);
+    }
+    else
+      position = binarySearcher(value);
+  }
+
   if (position == (-1))
   {
     cout << "Item not found" << endl;
@@ -212,16 +224,16 @@ void searchHandler() //                                    Linear search handler
   int value, temp;
   cout << "Enter value you want to search " << endl;
   cin >> value;
-  temp = la.searching(value);
+  temp = la.linearSearching(value);
   if (temp == (-1))
     cout << "Value not found" << endl;
   else
     cout << "Your value found at index " << temp << endl;
 }
 
-int binarySearcher() //                                    Binary Search Engine
+int binarySearcher(int searchItem) //                                    Binary Search Engine
 {
-  int var, returnBack, searchItem, itemIndex;
+  int var, returnBack, itemIndex;
   char ch;
   returnBack = la.sortingArrayChecker();
   if (returnBack == 0)
@@ -245,17 +257,10 @@ int binarySearcher() //                                    Binary Search Engine
   }
   else
   {
-    cout << "Enter the item you want to deal with " << endl;
-    cin >> searchItem;
     itemIndex = la.binarySearcherEmulator(searchItem);
-    if (itemIndex == (-1))
-    {
-      cout << "Item not found " << endl;
-    }
-    else
-      cout << "Searching index is " << itemIndex << endl;
+    return itemIndex;
   }
-  return 1;
+  return 0;
 }
 
 int linearHub()
@@ -296,10 +301,10 @@ int linearHub()
       searchHandler();
       break;
     case 6:
-      deletion();
+      deletion(0);
       break;
     case 7:
-      la.updation();
+      la.updation(0);
       break;
     case 8:
       la.showArray();
@@ -314,7 +319,7 @@ int linearHub()
 
 int binaryHub()
 {
-  int choice;
+  int choice, searchItem;
   // char ch;
   while (1)
   {
@@ -347,13 +352,15 @@ int binaryHub()
       insertMenue();
       break;
     case 5:
-      binarySearcher();
+      cout << "Enter the value you want to search \t";
+      cin >> searchItem;
+      binarySearcher(searchItem);
       break;
     case 6:
-      deletion();
+      deletion(1);
       break;
     case 7:
-      la.updation();
+      la.updation(1);
       break;
     case 8:
       la.showArray();
