@@ -3,6 +3,8 @@ using namespace std;
 
 //*****************************************************************Functions Decleration
 int handleSetArray();
+int handleInsertion();
+void handleInsertionSub(int x);
 //*****************************************************************Global Variables
 int n;
 //*****************************************************************Class
@@ -52,7 +54,42 @@ public:
   {
     for (int i = 0; i < n; i++)
     {
-      cout << name[i] << "\t" << phone[i] << "\t" << address[i] << "\t" << endl;
+      cout << "At index [ " << i << " ] = " << name[i] << "\t" << phone[i] << "\t" << address[i] << "\t" << endl;
+    }
+  }
+  void insertion(string newname, int x, long long newnumber, int index)
+  {
+    if (n < index)
+      cout << "Error ";
+    else
+    {
+      if (x == 1) // if user wants to insert name
+      {
+        for (int i = n - 1; i >= index; i--)
+        {
+          name[i + 1] = name[i];
+        }
+        name[index] = newname;
+        n++;
+      }
+      else if (x == 2) // if user wants to insert phone number
+      {
+        for (int i = n - 1; i >= index; i--)
+        {
+          phone[i + 1] = phone[i];
+        }
+        phone[index] = newnumber;
+        n++;
+      }
+      else // if user wants to insert  address
+      {
+        for (int i = n - 1; i >= index; i--)
+        {
+          address[i + 1] = address[i];
+        }
+        address[index] = newname;
+        n++;
+      }
     }
   }
 };
@@ -88,6 +125,7 @@ int main()
       handleSetArray();
       break;
     case 3:
+      handleInsertion();
       break;
     case 4:
       break;
@@ -138,5 +176,66 @@ int handleSetArray()
     }
     ch = cin.get();
     ch = cin.get();
+  }
+}
+
+int handleInsertion()
+{
+  int choice;
+  char ch;
+  while (1)
+  {
+    system("cls");
+    cout << endl
+         << "1. Insert Name" << endl
+         << "2. Insert Phone Number" << endl
+         << "3. Insert Address" << endl
+         << "4. Return" << endl;
+
+    cout << "Enter you Choice" << endl;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      handleInsertionSub(1);
+      break;
+    case 2:
+      handleInsertionSub(2);
+      break;
+    case 3:
+      handleInsertionSub(3);
+      break;
+    case 4:
+      return 0;
+    }
+    ch = cin.get();
+    ch = cin.get();
+  }
+}
+
+void handleInsertionSub(int x)
+{
+  string name, address;
+  long long number;
+  int index;
+  cout << "Enter index where you want to insert Name   ";
+  cin >> index;
+  if (x == 1)
+  {
+    cout << "Enter Name You want to insert \t";
+    cin >> name;
+    obj.insertion(name, 1, number, index);
+  }
+  else if (x == 2)
+  {
+    cout << "Enter Phone Number You want to insert \t";
+    cin >> number;
+    obj.insertion(name, 2, number, index);
+  }
+  else
+  {
+    cout << "Enter Name You want to insert \t";
+    cin >> address;
+    obj.insertion(address, 3, number, index);
   }
 }
