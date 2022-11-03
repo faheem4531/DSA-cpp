@@ -7,6 +7,7 @@ int handleInsertion();
 void handleInsertionSub(int);
 int handleSearch();
 void handleSearchElement(int);
+int handleDelation();
 //*****************************************************************Global Variables
 int n, sizeN, sizeP, sizeA;
 //*****************************************************************Class
@@ -90,7 +91,7 @@ public:
         sizeN++;
       }
       else
-        cout << "Error ";
+        cout << "Error  index not Found";
     }
     else if (x == 2) // if user wants to insert phone number
     {
@@ -104,7 +105,7 @@ public:
         sizeP++;
       }
       else
-        cout << "Error ";
+        cout << "Error index not Found";
     }
     else // if user wants to insert  address
     {
@@ -118,8 +119,36 @@ public:
         sizeA++;
       }
       else
-        cout << "Error";
+        cout << "Error index not Found";
     }
+  }
+  int search(string value, long long number, int x)
+  {
+    if (x == 1) // For Name Searching
+    {
+      for (int i = 0; i < sizeN; i++)
+      {
+        if (name[i] == value)
+          return i;
+      }
+    }
+    else if (x == 2)
+    {
+      for (int i = 0; i < sizeN; i++)
+      {
+        if (phone[i] == number)
+          return i;
+      }
+    }
+    else
+    {
+      for (int i = 0; i < sizeA; i++)
+      {
+        if (address[i] == value)
+          return i;
+      }
+    }
+    return -1;
   }
 };
 
@@ -248,7 +277,7 @@ int handleInsertion()
 
 void handleInsertionSub(int x)
 {
-  string name, address;
+  string name;
   long long number;
   int index;
   cout << "Enter index where you want to insert  ";
@@ -268,8 +297,8 @@ void handleInsertionSub(int x)
   else
   {
     cout << "Enter Name You want to insert \t";
-    cin >> address;
-    obj.insertion(address, 3, 0, index);
+    cin >> name;
+    obj.insertion(name, 3, 0, index);
   }
 }
 
@@ -291,13 +320,13 @@ int handleSearch()
     switch (choice)
     {
     case 1:
-      handleSearchionSub(1);
+      handleSearchElement(1);
       break;
     case 2:
-      handleInsertionSub(2);
+      handleSearchElement(2);
       break;
     case 3:
-      handleInsertionSub(3);
+      handleSearchElement(3);
       break;
     case 4:
       return 0;
@@ -305,4 +334,41 @@ int handleSearch()
     ch = cin.get();
     ch = cin.get();
   }
+}
+
+void handleSearchElement(int x)
+{
+  string name;
+  long long number;
+  int index;
+  if (x == 1)
+  {
+    cout << "Enter Name You want to Search \t";
+    cin >> name;
+    index = obj.search(name, 0, 1);
+  }
+  else if (x == 2)
+  {
+    cout << "Enter Phone Number You want to Search \t";
+    cin >> number;
+    index = obj.search("nothing", number, 2);
+  }
+  else
+  {
+    cout << "Enter Name You want to Search \t";
+    cin >> name;
+    index = obj.search(name, 0, 3);
+  }
+
+  //    Retuen Index print
+  if (index == (-1))
+  {
+    cout << "Not found" << endl;
+  }
+  else
+    cout << "You Data fount at index = " << index << endl;
+}
+
+int handleDelation()
+{
 }
