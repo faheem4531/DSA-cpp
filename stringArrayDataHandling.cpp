@@ -6,7 +6,7 @@ int handleSetArray();
 int handleInsertion();
 void handleInsertionSub(int x);
 //*****************************************************************Global Variables
-int n;
+int n, sizeN, sizeP, sizeA;
 //*****************************************************************Class
 class DataOperator
 {
@@ -15,87 +15,114 @@ private:
   string name[50], address[50];
 
 public:
-  DataOperator(int n)
+  DataOperator(int sizeN, int sizeP, int sizeA)
   {
-    phone[n];
-    name[n];
-    address[n];
+    phone[sizeP];
+    name[sizeN];
+    address[sizeA];
   }
   void setData(int x)
   {
     if (x == 1)
     {
-      for (int i = 0; i < n; i++)
+      for (int i = 0; i < sizeN; i++)
       {
-        cout << "Enter name at [ " << i << " ] = ";
+        cout << "Enter name at [ " << i << " ] = \t ";
         cin >> name[i];
         cout << "\t" << phone[i] << "\t" << address[i] << endl;
       }
     }
     else if (x == 2)
     {
-      for (int i = 0; i < n; i++)
+      for (int i = 0; i < sizeP; i++)
       {
-        cout << "Enter phone at [ " << i << " ] = " << name[i] << "\t";
+        cout << "Enter phone at [ " << i << " ] = \t" << name[i] << "\t ";
         cin >> phone[i];
         cout << "\t" << address[i] << endl;
       }
     }
     else
     {
-      for (int i = 0; i < n; i++)
+      for (int i = 0; i < sizeA; i++)
       {
-        cout << "Enter address at [ " << i << " ] = " << name[i] << "\t" << phone[i] << "\t";
+        cout << "Enter address at [ " << i << " ] = \t " << name[i] << "\t \t" << phone[i] << "\t \t";
         cin >> address[i];
+        cout << endl;
       }
     }
   }
   void showData()
   {
-    for (int i = 0; i < n; i++)
+    cout << "Name : \t";
+    for (int i = 0; i < sizeN; i++)
     {
-      cout << "At index [ " << i << " ] = " << name[i] << "\t" << phone[i] << "\t" << address[i] << "\t" << endl;
+      cout << "\t \t" << name[i];
     }
+    cout << endl
+         << endl
+         << "Phone : ";
+    for (int i = 0; i < sizeP; i++)
+    {
+      cout << "\t \t" << phone[i];
+    }
+    cout << endl
+         << endl
+         << "Address : ";
+    for (int i = 0; i < sizeA; i++)
+    {
+      cout << "\t \t" << address[i];
+    }
+    cout << endl;
   }
   void insertion(string newname, int x, long long newnumber, int index)
   {
-    if (n < index)
-      cout << "Error ";
-    else
+    if (x == 1) // if user wants to insert name
     {
-      if (x == 1) // if user wants to insert name
+      if (sizeN < index)
       {
-        for (int i = n - 1; i >= index; i--)
+        for (int i = sizeN - 1; i >= index; i--)
         {
           name[i + 1] = name[i];
         }
         name[index] = newname;
-        n++;
+        sizeN++;
       }
-      else if (x == 2) // if user wants to insert phone number
+      else
+        cout << "Error ";
+    }
+    else if (x == 2) // if user wants to insert phone number
+    {
+      if (sizeP < index)
       {
-        for (int i = n - 1; i >= index; i--)
+        for (int i = sizeP - 1; i >= index; i--)
         {
           phone[i + 1] = phone[i];
         }
         phone[index] = newnumber;
-        n++;
+        sizeP++;
       }
-      else // if user wants to insert  address
+      else
+        cout << "Error ";
+    }
+    else // if user wants to insert  address
+    {
+      if (sizeA < index)
       {
-        for (int i = n - 1; i >= index; i--)
+        for (int i = sizeA - 1; i >= index; i--)
         {
           address[i + 1] = address[i];
         }
         address[index] = newname;
-        n++;
+        sizeA++;
       }
+      else
+        cout << "Error";
     }
   }
 };
 
 //*****************************************************************Main function
-DataOperator obj(n);
+DataOperator obj(sizeN, sizeP, sizeA);
 int main()
 {
 
@@ -118,8 +145,12 @@ int main()
     switch (choice)
     {
     case 1:
-      cout << "Total index you want for an array" << endl;
+      cout << "Total index you want for Data Entry" << endl;
       cin >> n;
+      sizeA = n;
+      sizeN = n;
+      sizeP = n;
+      // cout << "n = " << n << " \t name = " << sizeN << " \t phone " << sizeP << "\t address = " << sizeA << endl;
       break;
     case 2:
       handleSetArray();
@@ -224,18 +255,18 @@ void handleInsertionSub(int x)
   {
     cout << "Enter Name You want to insert \t";
     cin >> name;
-    obj.insertion(name, 1, number, index);
+    obj.insertion(name, 1, 0, index);
   }
   else if (x == 2)
   {
     cout << "Enter Phone Number You want to insert \t";
     cin >> number;
-    obj.insertion(name, 2, number, index);
+    obj.insertion("no item", 2, number, index);
   }
   else
   {
     cout << "Enter Name You want to insert \t";
     cin >> address;
-    obj.insertion(address, 3, number, index);
+    obj.insertion(address, 3, 0, index);
   }
 }
