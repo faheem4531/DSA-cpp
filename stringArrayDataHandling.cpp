@@ -2,6 +2,8 @@
 using namespace std;
 
 //*****************************************************************Functions Decleration
+void setArrayIndexes();
+void showArrayIndexes();
 int handleSetArray();
 int handleInsertion();
 void handleInsertionSub(int);
@@ -9,6 +11,8 @@ int handleSearch();
 void handleSearchElement(int);
 int handleDeletion();
 void handleDeletionElement(int);
+int handleUpdation();
+void handleUpdationElement(int);
 //*****************************************************************Global Variables
 int n, sizeN, sizeP, sizeA;
 //*****************************************************************Class
@@ -181,6 +185,17 @@ public:
       sizeA--;
     }
   }
+  void Updation(int x, int index, string names, long long newNumber)
+  {
+    if (x == 1)
+      name[index] = names;
+
+    else if (x == 2)
+      phone[index] = newNumber;
+
+    else
+      address[index] = names;
+  }
 };
 
 //*****************************************************************Main function
@@ -193,44 +208,46 @@ int main()
   while (1)
   {
     system("cls");
+    cout << "NOTE: Inscribing strings should not contain spaces." << endl;
     cout << endl
-         << "1. Set Array index" << endl
-         << "2. Set array" << endl
-         << "3. Insert " << endl
-         << "4. Search" << endl
-         << "5. Delete" << endl
-         << "6. Update" << endl
-         << "7. Show" << endl
-         << "8. Exit" << endl;
+         << "1. Check current size of arrays" << endl
+         << "2. Set Arrays indexes" << endl
+         << "3. Set Array's Data" << endl
+         << "4. Insert" << endl
+         << "5. Search" << endl
+         << "6. Delete" << endl
+         << "7. Update" << endl
+         << "8. Show Current Data" << endl
+         << "9. Exit" << endl;
     cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
     {
     case 1:
-      cout << "Total index you want for Data Entry" << endl;
-      cin >> n;
-      sizeA = n;
-      sizeN = n;
-      sizeP = n;
+      showArrayIndexes();
       break;
     case 2:
-      handleSetArray();
+      setArrayIndexes();
       break;
     case 3:
-      handleInsertion();
+      handleSetArray();
       break;
     case 4:
-      handleSearch();
+      handleInsertion();
       break;
     case 5:
-      handleDeletion();
+      handleSearch();
       break;
     case 6:
+      handleDeletion();
       break;
     case 7:
-      obj.showData();
+      handleUpdation();
       break;
     case 8:
+      obj.showData();
+      break;
+    case 9:
       return 0;
     }
     ch = cin.get();
@@ -239,6 +256,23 @@ int main()
 }
 
 //*****************************************************************Function Definations
+
+void showArrayIndexes()
+{
+  cout << "Size of Name's    Array :  \t" << sizeN << endl;
+  cout << "Size of Phone's   Array :  \t" << sizeP << endl;
+  cout << "Size of Address's Array :  \t" << sizeA << endl;
+}
+
+void setArrayIndexes()
+{
+  cout << "Total index you want for Data Entry" << endl;
+  cin >> n;
+  sizeA = n;
+  sizeN = n;
+  sizeP = n;
+}
+
 int handleSetArray()
 {
   int choice;
@@ -398,7 +432,7 @@ void handleSearchElement(int x)
     cout << "Not found" << endl;
   }
   else
-    cout << "You Data fount at index = " << index << endl;
+    cout << "You Data found at index = " << index << endl;
 }
 
 int handleDeletion()
@@ -483,6 +517,99 @@ void handleDeletionElement(int x)
     {
       obj.deletion(3, index);
       cout << "Deletion accomplished ";
+    }
+  }
+}
+
+int handleUpdation()
+{
+  int choice;
+  char ch;
+  while (1)
+  {
+    system("cls");
+    cout << endl
+         << "1. Update Name" << endl
+         << "2. Update Phone Number" << endl
+         << "3. Update Address" << endl
+         << "4. Return" << endl;
+
+    cout << "Enter you Choice" << endl;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      handleUpdationElement(1);
+      break;
+    case 2:
+      handleUpdationElement(2);
+      break;
+    case 3:
+      handleUpdationElement(3);
+      break;
+    case 4:
+      return 0;
+    }
+    ch = cin.get();
+    ch = cin.get();
+  }
+}
+
+void handleUpdationElement(int x)
+{
+  string name, newName;
+  long long number, newNum;
+  int index;
+  if (x == 1)
+  {
+    cout << "Enter Name You want to Update \t";
+    cin >> name;
+    index = obj.search(name, 0, 1);
+    if (index == (-1))
+    {
+      cout << "Name not found" << endl;
+    }
+    else
+    {
+      cout << "Enter New Name \t";
+      cin >> newName;
+      obj.Updation(1, index, newName, 0);
+      cout << "Updation accomplished ";
+    }
+  }
+  else if (x == 2)
+  {
+    cout << "Enter Phone Number You want to Updation \t";
+    cin >> number;
+    index = obj.search("nothing", number, 2);
+    if (index == (-1))
+    {
+      cout << "Number not found" << endl;
+    }
+    else
+    {
+      cout << "Enter New Number \t";
+      cin >> newNum;
+      obj.Updation(2, index, "nothing", newNum);
+      cout << "Updation accomplished ";
+    }
+  }
+  else
+  {
+    cout << "Enter address You want to Updation \t";
+    cin >> name;
+
+    index = obj.search(name, 0, 3);
+    if (index == (-1))
+    {
+      cout << "Address not found" << endl;
+    }
+    else
+    {
+      cout << "Enter New Address \t";
+      cin >> newName;
+      obj.Updation(3, index, newName, 0);
+      cout << "Updation accomplished ";
     }
   }
 }
