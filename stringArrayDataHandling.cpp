@@ -7,7 +7,8 @@ int handleInsertion();
 void handleInsertionSub(int);
 int handleSearch();
 void handleSearchElement(int);
-int handleDelation();
+int handleDeletion();
+void handleDeletionElement(int);
 //*****************************************************************Global Variables
 int n, sizeN, sizeP, sizeA;
 //*****************************************************************Class
@@ -150,6 +151,36 @@ public:
     }
     return -1;
   }
+  void deletion(int x, int index)
+  {
+    if (x == 1)
+    {
+      for (int i = 0; i < sizeN; i++)
+      {
+        if (index <= i)
+          name[i] = name[i + 1];
+      }
+      sizeN--;
+    }
+    else if (x == 2)
+    {
+      for (int i = 0; i < sizeP; i++)
+      {
+        if (index <= i)
+          phone[i] = phone[i + 1];
+      }
+      sizeP--;
+    }
+    else
+    {
+      for (int i = 0; i < n; i++)
+      {
+        if (index <= i)
+          address[i] = address[i + 1];
+      }
+      sizeA--;
+    }
+  }
 };
 
 //*****************************************************************Main function
@@ -192,6 +223,7 @@ int main()
       handleSearch();
       break;
     case 5:
+      handleDeletion();
       break;
     case 6:
       break;
@@ -369,6 +401,88 @@ void handleSearchElement(int x)
     cout << "You Data fount at index = " << index << endl;
 }
 
-int handleDelation()
+int handleDeletion()
 {
+  int choice;
+  char ch;
+  while (1)
+  {
+    system("cls");
+    cout << endl
+         << "1. Delete Name" << endl
+         << "2. Delete Phone Number" << endl
+         << "3. Delete Address" << endl
+         << "4. Return" << endl;
+
+    cout << "Enter you Choice" << endl;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      handleDeletionElement(1);
+      break;
+    case 2:
+      handleDeletionElement(2);
+      break;
+    case 3:
+      handleDeletionElement(3);
+      break;
+    case 4:
+      return 0;
+    }
+    ch = cin.get();
+    ch = cin.get();
+  }
+}
+
+void handleDeletionElement(int x)
+{
+  string name;
+  long long number;
+  int index;
+  if (x == 1)
+  {
+    cout << "Enter Name You want to Delete \t";
+    cin >> name;
+    index = obj.search(name, 0, 1);
+    if (index == (-1))
+    {
+      cout << "Name not found" << endl;
+    }
+    else
+    {
+      obj.deletion(1, index);
+      cout << "Deletion accomplished ";
+    }
+  }
+  else if (x == 2)
+  {
+    cout << "Enter Phone Number You want to Delete \t";
+    cin >> number;
+    index = obj.search("nothing", number, 2);
+    if (index == (-1))
+    {
+      cout << "Number not found" << endl;
+    }
+    else
+    {
+      obj.deletion(2, index);
+      cout << "Deletion accomplished ";
+    }
+  }
+  else
+  {
+    cout << "Enter address You want to Delete \t";
+    cin >> name;
+    index = obj.search(name, 0, 3);
+    if (index == (-1))
+    {
+      cout << "Address not found" << endl;
+    }
+    else
+    {
+      obj.deletion(3, index);
+      cout << "Deletion accomplished ";
+    }
+  }
 }
