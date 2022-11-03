@@ -4,7 +4,9 @@ using namespace std;
 //*****************************************************************Functions Decleration
 int handleSetArray();
 int handleInsertion();
-void handleInsertionSub(int x);
+void handleInsertionSub(int);
+int handleSearch();
+void handleSearchElement(int);
 //*****************************************************************Global Variables
 int n, sizeN, sizeP, sizeA;
 //*****************************************************************Class
@@ -78,7 +80,7 @@ public:
   {
     if (x == 1) // if user wants to insert name
     {
-      if (sizeN < index)
+      if (sizeN >= index)
       {
         for (int i = sizeN - 1; i >= index; i--)
         {
@@ -92,7 +94,7 @@ public:
     }
     else if (x == 2) // if user wants to insert phone number
     {
-      if (sizeP < index)
+      if (sizeP >= index)
       {
         for (int i = sizeP - 1; i >= index; i--)
         {
@@ -106,7 +108,7 @@ public:
     }
     else // if user wants to insert  address
     {
-      if (sizeA < index)
+      if (sizeA >= index)
       {
         for (int i = sizeA - 1; i >= index; i--)
         {
@@ -150,7 +152,6 @@ int main()
       sizeA = n;
       sizeN = n;
       sizeP = n;
-      // cout << "n = " << n << " \t name = " << sizeN << " \t phone " << sizeP << "\t address = " << sizeA << endl;
       break;
     case 2:
       handleSetArray();
@@ -159,6 +160,7 @@ int main()
       handleInsertion();
       break;
     case 4:
+      handleSearch();
       break;
     case 5:
       break;
@@ -249,7 +251,7 @@ void handleInsertionSub(int x)
   string name, address;
   long long number;
   int index;
-  cout << "Enter index where you want to insert Name   ";
+  cout << "Enter index where you want to insert  ";
   cin >> index;
   if (x == 1)
   {
@@ -268,5 +270,39 @@ void handleInsertionSub(int x)
     cout << "Enter Name You want to insert \t";
     cin >> address;
     obj.insertion(address, 3, 0, index);
+  }
+}
+
+int handleSearch()
+{
+  int choice;
+  char ch;
+  while (1)
+  {
+    system("cls");
+    cout << endl
+         << "1. Search Name" << endl
+         << "2. Search Phone Number" << endl
+         << "3. Search Address" << endl
+         << "4. Return" << endl;
+
+    cout << "Enter you Choice" << endl;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      handleSearchionSub(1);
+      break;
+    case 2:
+      handleInsertionSub(2);
+      break;
+    case 3:
+      handleInsertionSub(3);
+      break;
+    case 4:
+      return 0;
+    }
+    ch = cin.get();
+    ch = cin.get();
   }
 }
