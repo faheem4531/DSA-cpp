@@ -2,13 +2,16 @@
 using namespace std;
 
 //*****************************************************************Functions Decleration
-void setArrayIndexes();
-void showArrayIndexes();
+int showArrayIndexes();
+int setArrayIndexes();
 int handleSetArray();
 int handleInsertion();
 void handleInsertionSub(int);
 int handleSearch();
 void handleSearchElement(int);
+int handleDelationMenue();
+int handleDaleteByIndex();
+void handleDeleteIndexSub(int);
 int handleDeletion();
 void handleDeletionElement(int);
 int handleUpdation();
@@ -61,6 +64,8 @@ public:
   }
   void showData()
   {
+    cout << endl
+         << endl;
     cout << "Name : \t";
     for (int i = 0; i < sizeN; i++)
     {
@@ -71,7 +76,7 @@ public:
          << "Phone : ";
     for (int i = 0; i < sizeP; i++)
     {
-      cout << "\t \t" << phone[i];
+      cout << "\t \t " << phone[i];
     }
     cout << endl
          << endl
@@ -137,7 +142,7 @@ public:
           return i;
       }
     }
-    else if (x == 2)
+    else if (x == 2) // For Number Searching
     {
       for (int i = 0; i < sizeN; i++)
       {
@@ -145,7 +150,7 @@ public:
           return i;
       }
     }
-    else
+    else // For Address Searching
     {
       for (int i = 0; i < sizeA; i++)
       {
@@ -208,7 +213,8 @@ int main()
   while (1)
   {
     system("cls");
-    cout << "NOTE: Inscribing strings should not contain spaces." << endl;
+    cout << "NOTE:" << endl
+         << "    Inscribing strings should not contain spaces." << endl;
     cout << endl
          << "1. Check current size of arrays" << endl
          << "2. Set Arrays indexes" << endl
@@ -239,7 +245,7 @@ int main()
       handleSearch();
       break;
     case 6:
-      handleDeletion();
+      handleDelationMenue();
       break;
     case 7:
       handleUpdation();
@@ -248,6 +254,9 @@ int main()
       obj.showData();
       break;
     case 9:
+      ch = cin.get();
+      ch = cin.get();
+      cout << "... by  ==>  Mushab Faheem  <==" << endl;
       return 0;
     }
     ch = cin.get();
@@ -257,20 +266,30 @@ int main()
 
 //*****************************************************************Function Definations
 
-void showArrayIndexes()
+int showArrayIndexes()
 {
+  char ch;
+  system("cls");
   cout << "Size of Name's    Array :  \t" << sizeN << endl;
   cout << "Size of Phone's   Array :  \t" << sizeP << endl;
   cout << "Size of Address's Array :  \t" << sizeA << endl;
+  ch = cin.get();
+  // ch = cin.get();
+  return 0;
 }
 
-void setArrayIndexes()
+int setArrayIndexes()
 {
+  char ch;
+  system("cls");
   cout << "Total index you want for Data Entry" << endl;
   cin >> n;
   sizeA = n;
   sizeN = n;
   sizeP = n;
+  ch = cin.get();
+  // ch = cin.get();
+  return 0;
 }
 
 int handleSetArray()
@@ -353,18 +372,21 @@ void handleInsertionSub(int x)
     cout << "Enter Name You want to insert \t";
     cin >> name;
     obj.insertion(name, 1, 0, index);
+    cout << "Value Added...";
   }
   else if (x == 2)
   {
     cout << "Enter Phone Number You want to insert \t";
     cin >> number;
     obj.insertion("no item", 2, number, index);
+    cout << "Value Added...";
   }
   else
   {
     cout << "Enter Name You want to insert \t";
     cin >> name;
     obj.insertion(name, 3, 0, index);
+    cout << "Value Added...";
   }
 }
 
@@ -433,6 +455,107 @@ void handleSearchElement(int x)
   }
   else
     cout << "You Data found at index = " << index << endl;
+}
+
+int handleDelationMenue()
+{
+  int choice;
+  char ch;
+  while (1)
+  {
+    system("cls");
+    cout << endl
+         << "1. Delete by Index" << endl
+         << "2. Delete by Value" << endl
+         << "3. Return" << endl;
+
+    cout << "Enter you Choice" << endl;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      handleDaleteByIndex();
+      break;
+    case 2:
+      handleDeletion();
+      break;
+    case 3:
+      return 0;
+    }
+    ch = cin.get();
+    ch = cin.get();
+  }
+}
+
+int handleDaleteByIndex()
+{
+  int choice;
+  char ch;
+  while (1)
+  {
+    system("cls");
+    cout << endl
+         << "1. Delete Name's index" << endl
+         << "2. Delete P-Number's index" << endl
+         << "3. Delete Address's index" << endl
+         << "4. Return" << endl;
+
+    cout << "Enter you Choice" << endl;
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      handleDeleteIndexSub(1);
+      break;
+    case 2:
+      handleDeleteIndexSub(2);
+      break;
+    case 3:
+      handleDeleteIndexSub(3);
+      break;
+    case 4:
+      return 0;
+    }
+    ch = cin.get();
+    ch = cin.get();
+  }
+}
+
+void handleDeleteIndexSub(int x)
+{
+  int index;
+  cout << "Enter the index you want to delete " << endl;
+  cin >> index;
+  if (x == 1)
+  {
+    if (index < sizeN)
+    {
+      obj.deletion(1, index);
+      cout << "Deletion accomplished ";
+    }
+    else
+      cout << "Error ... Index exceeded";
+  }
+  else if (x == 2)
+  {
+    if (index < sizeP)
+    {
+      obj.deletion(2, index);
+      cout << "Deletion accomplished ";
+    }
+    else
+      cout << "Error ... Index exceeded";
+  }
+  else
+  {
+    if (index < sizeA)
+    {
+      obj.deletion(3, index);
+      cout << "Deletion accomplished ";
+    }
+    else
+      cout << "Error ... Index exceeded";
+  }
 }
 
 int handleDeletion()
@@ -613,3 +736,5 @@ void handleUpdationElement(int x)
     }
   }
 }
+
+/****************                                        Code - END                                     ****************/
