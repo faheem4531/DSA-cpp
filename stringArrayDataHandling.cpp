@@ -99,6 +99,7 @@ public:
         }
         name[index] = newname;
         sizeN++;
+        cout << "Value Added...";
       }
       else
         cout << "Error  index not Found";
@@ -113,6 +114,7 @@ public:
         }
         phone[index] = newnumber;
         sizeP++;
+        cout << "Value Added...";
       }
       else
         cout << "Error index not Found";
@@ -127,6 +129,7 @@ public:
         }
         address[index] = newname;
         sizeA++;
+        cout << "Value Added...";
       }
       else
         cout << "Error index not Found";
@@ -372,21 +375,21 @@ void handleInsertionSub(int x)
     cout << "Enter Name You want to insert \t";
     cin >> name;
     obj.insertion(name, 1, 0, index);
-    cout << "Value Added...";
+    // cout << "Value Added...";
   }
   else if (x == 2)
   {
     cout << "Enter Phone Number You want to insert \t";
     cin >> number;
     obj.insertion("no item", 2, number, index);
-    cout << "Value Added...";
+    // cout << "Value Added...";
   }
   else
   {
     cout << "Enter Name You want to insert \t";
     cin >> name;
     obj.insertion(name, 3, 0, index);
-    cout << "Value Added...";
+    // cout << "Value Added...";
   }
 }
 
