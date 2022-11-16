@@ -109,6 +109,7 @@ void ShowMatrix(int **array, int r, int c) //       Show Matrix
 
 void checkAdding(int **array1, int **array2, int **add, int r1, int r2, int c1, int c2)
 {
+  system("cls");
   if (r1 == r2 && c1 == c2)
   {
     for (int i = 0; i < r1; i++)
@@ -118,14 +119,20 @@ void checkAdding(int **array1, int **array2, int **add, int r1, int r2, int c1, 
         add[i][j] = array1[i][j] + array2[i][j];
       }
     }
-    cout << "Sum of 2 Matrixes \n"
+    cout << "\t \t Sum of 2 Matrixes \n"
          << endl;
+    cout << endl
+         << "\t \t Matrix 1" << endl;
+    ShowMatrix(array1, r1, c1);
+    cout << endl
+         << "\t \t Matrix 2" << endl;
+    ShowMatrix(array2, r1, c1);
+    cout << endl
+         << "\t \t Sum of Both Matrices " << endl;
     ShowMatrix(add, r1, c1);
   }
   else
     cout << "Matrix Addition Rule Error" << endl;
-
-  // return 0;
 }
 
 int menueSubtract(int **array1, int **array2, int **sub, int r1, int r2, int c1, int c2)
@@ -159,6 +166,7 @@ int menueSubtract(int **array1, int **array2, int **sub, int r1, int r2, int c1,
 
 void subtract(int **array1, int **array2, int **sub, int r1, int r2, int c1, int c2)
 {
+  system("cls");
   if (r1 == r2 && c1 == c2)
   {
     for (int i = 0; i < r1; i++)
@@ -168,8 +176,16 @@ void subtract(int **array1, int **array2, int **sub, int r1, int r2, int c1, int
         sub[i][j] = array1[i][j] - array2[i][j];
       }
     }
-    cout << "Subtraction \n"
+    cout << "\t \t Subtraction of Matrices\n"
          << endl;
+    cout << endl
+         << "\t \t Matrix 1" << endl;
+    ShowMatrix(array1, r1, c1);
+    cout << endl
+         << "\t \t Matrix 2" << endl;
+    ShowMatrix(array2, r1, c1);
+    cout << endl
+         << "\t \t Subtrected Matrix " << endl;
     ShowMatrix(sub, r1, c1);
   }
   else
