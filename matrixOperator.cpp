@@ -1,10 +1,12 @@
 #include <iostream>
 using namespace std;
-//*********************************  Menue Functions Handler
-
-//********************************   Logical Functions Controler
+//*********************************  Functions Handler
+int checkAdding(int **, int **, int **, int, int, int, int);
+// int menueSubtract(int **, int **, int **, int, int, int, int);
+//*********************************   Logical Functions Controler
 void SetMatrix(int **, int, int);
 void ShowMatrix(int **, int, int);
+void add(int **, int **, int, int, int, int);
 //*******************************   Main
 int main()
 {
@@ -20,13 +22,15 @@ int main()
   cout << "Enter Column for 2nd Matrix \t";
   cin >> c2;
 
-  //   2D array Decleration in hype memory
+  //   2D array Decleratfon in hype memory
   int **matrix1 = new int *[r1];
   int **matrix2 = new int *[r2];
+  int **apply = new int *[r1];
   //   Memory Allocation for 2 matrixes
   for (int i = 0; i < r1; i++)
   {
     matrix1[i] = new int[c1];
+    apply[i] = new int[c1];
   }
   for (int i = 0; i < r2; i++)
   {
@@ -40,9 +44,11 @@ int main()
          << "2. Set Matrix-2" << endl
          << "3. Show Matrix-1" << endl
          << "4. Show Matrix-2" << endl
-         << "5. Exit" << endl;
+         << "5. Adding" << endl
+         << "6. Exit" << endl;
     cout << "\nEnter Choice \t";
     cin >> hit;
+    cout << endl;
     switch (hit)
     {
     case (1):
@@ -53,10 +59,13 @@ int main()
       break;
     case (3):
       ShowMatrix(matrix1, r1, c1);
+      break;
     case (4):
       ShowMatrix(matrix2, r2, c2);
       break;
     case (5):
+      checkAdding(matrix1, matrix2, apply, r1, r2, c1, c2);
+    case (6):
       return 0;
     }
     ch = cin.get();
@@ -89,4 +98,24 @@ void ShowMatrix(int **array, int r, int c) //       Show Matrix
     }
     cout << endl;
   }
+}
+
+int checkAdding(int **array1, int **array2, int **add, int r1, int r2, int c1, int c2)
+{
+  if (r1 == r2 && c1 == c2)
+  {
+    for (int i = 0; i < r1; i++)
+    {
+      for (int j = 0; j < c1; j++)
+      {
+        add[i][j] = array1[i][j] + array2[i][j];
+      }
+    }
+    cout << "Sum of 2 Matrixes " << endl;
+    ShowMatrix(add, r1, c1);
+  }
+  else
+    cout << "Matrix Addition Rule Error" << endl;
+
+  return 0;
 }
