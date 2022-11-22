@@ -124,7 +124,7 @@ void checkAdding(int **array1, int **array2, int **add, int r1, int r2, int c1, 
         add[i][j] = array1[i][j] + array2[i][j];
       }
     }
-    cout << "\t \t Sum of 2 Matrixes \n"
+    cout << "\t \t \t Sum of 2 Matrixes \n"
          << endl;
     cout << endl
          << "\t \t Matrix 1" << endl;
@@ -181,7 +181,7 @@ void subtract(int **array1, int **array2, int **sub, int r1, int r2, int c1, int
         sub[i][j] = array1[i][j] - array2[i][j];
       }
     }
-    cout << "\t \t Subtraction of Matrices\n"
+    cout << "\t \t \t Subtraction of Matrices\n"
          << endl;
     cout << endl
          << "\t \t Matrix 1" << endl;
@@ -213,7 +213,7 @@ void multiplyhandler(int **m1, int **m2, int **product, int r1, int r2, int c1, 
         }
       }
     }
-    cout << "\t \t Multiplication of Matrices" << endl
+    cout << "\t \t \t Multiplication of Matrices" << endl
          << endl;
     cout << endl
          << "\t \t Matrix 1 " << endl;
