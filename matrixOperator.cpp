@@ -3,7 +3,7 @@ using namespace std;
 //*********************************  Functions Handler
 void checkAdding(int **, int **, int **, int, int, int, int);
 int menueSubtract(int **, int **, int **, int, int, int, int);
-void muntiplyhandler(int **, int **, int **, int, int, int, int);
+void multiplyhandler(int **, int **, int **, int, int, int, int);
 //*********************************   Logical Functions Controler
 void SetMatrix(int **, int, int);
 void ShowMatrix(int **, int, int);
@@ -75,7 +75,7 @@ int main()
       menueSubtract(matrix1, matrix2, apply, r1, r2, c1, c2);
       break;
     case (7):
-      muntiplyhandler(matrix1, matrix2, apply, r1, r2, c1, c2);
+      multiplyhandler(matrix1, matrix2, apply, r1, r2, c1, c2);
       break;
     case (8):
       return 0;
@@ -197,8 +197,9 @@ void subtract(int **array1, int **array2, int **sub, int r1, int r2, int c1, int
     cout << "Matrix Subtraction Rule Error" << endl;
 }
 
-void muntiplyhandler(int **m1, int **m2, int **product, int r1, int r2, int c1, int c2)
+void multiplyhandler(int **m1, int **m2, int **product, int r1, int r2, int c1, int c2)
 {
+  system("cls");
   if (c1 == r2)
   {
     for (int i = 0; i < r1; i++)
@@ -212,9 +213,21 @@ void muntiplyhandler(int **m1, int **m2, int **product, int r1, int r2, int c1, 
         }
       }
     }
+    cout << "\t \t Multiplication of Matrices" << endl
+         << endl;
+    cout << endl
+         << "\t \t Matrix 1 " << endl;
+    ShowMatrix(m1, r1, c1);
+
+    cout << endl
+         << "\t \t Matrix 2 " << endl;
+    ShowMatrix(m2, r2, c2);
+    cout << endl
+         << "\t \t Product " << endl;
     ShowMatrix(product, r2, c2);
-    cout << endl;
   }
   else
     cout << "Condition unsatisfied" << endl;
 }
+
+//**************                             Code End                                    ************
