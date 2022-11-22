@@ -3,6 +3,7 @@ using namespace std;
 //*********************************  Functions Handler
 void checkAdding(int **, int **, int **, int, int, int, int);
 int menueSubtract(int **, int **, int **, int, int, int, int);
+void muntiplyhandler(int **, int **, int **, int, int, int, int);
 //*********************************   Logical Functions Controler
 void SetMatrix(int **, int, int);
 void ShowMatrix(int **, int, int);
@@ -26,16 +27,16 @@ int main()
   //   2D array Decleratfon in hype memory
   int **matrix1 = new int *[r1];
   int **matrix2 = new int *[r2];
-  int **apply = new int *[r1];
+  int **apply = new int *[r2];
   //   Memory Allocation for 2 matrixes
   for (int i = 0; i < r1; i++)
   {
     matrix1[i] = new int[c1];
-    apply[i] = new int[c1];
   }
   for (int i = 0; i < r2; i++)
   {
     matrix2[i] = new int[c2];
+    apply[i] = new int[c1];
   }
 
   while (1)
@@ -48,7 +49,8 @@ int main()
          << "4. Show Matrix-2" << endl
          << "5. Adding" << endl
          << "6. Subtraction" << endl
-         << "7. Exit" << endl;
+         << "7. Multiplication" << endl
+         << "8. Exit" << endl;
     cout << "\nEnter Choice \t";
     cin >> hit;
     cout << endl;
@@ -73,6 +75,9 @@ int main()
       menueSubtract(matrix1, matrix2, apply, r1, r2, c1, c2);
       break;
     case (7):
+      muntiplyhandler(matrix1, matrix2, apply, r1, r2, c1, c2);
+      break;
+    case (8):
       return 0;
     }
     ch = cin.get();
@@ -190,4 +195,26 @@ void subtract(int **array1, int **array2, int **sub, int r1, int r2, int c1, int
   }
   else
     cout << "Matrix Subtraction Rule Error" << endl;
+}
+
+void muntiplyhandler(int **m1, int **m2, int **product, int r1, int r2, int c1, int c2)
+{
+  if (c1 == r2)
+  {
+    for (int i = 0; i < r1; i++)
+    {
+      for (int j = 0; j < c2; j++)
+      {
+        product[i][j] = 0;
+        for (int k = 0; k < r2; k++) // c1==r2......k<c1
+        {
+          product[i][j] = product[i][j] + m1[i][k] * m2[k][j];
+        }
+      }
+    }
+    ShowMatrix(product, r2, c2);
+    cout << endl;
+  }
+  else
+    cout << "Condition unsatisfied" << endl;
 }
