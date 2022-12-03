@@ -1,3 +1,4 @@
+//                                                     Mushab Faheem
 #include <iostream>
 using namespace std;
 //*********************************  Functions Handler
@@ -19,12 +20,12 @@ int main()
   cin >> r1;
   cout << "Enter Column for 1st Matrix \t";
   cin >> c1;
-  cout << "Enter Rows for 2nd Matrix \t";
+  cout << "\n Enter Rows for 2nd Matrix \t";
   cin >> r2;
   cout << "Enter Column for 2nd Matrix \t";
   cin >> c2;
 
-  //   2D array Decleratfon in hype memory
+  //   2D array Decleration in hype memory
   int **matrix1 = new int *[r1];
   int **matrix2 = new int *[r2];
   int **apply = new int *[r2];
