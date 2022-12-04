@@ -235,26 +235,63 @@ public:
     }
     return count;
   }
+  int sum()
+  {
+    int sum = 0;
+    Node *currNode = head;
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      while (currNode != NULL)
+      {
+        sum = sum + currNode->data;
+        currNode = currNode->next;
+      }
+    }
+    return sum;
+  }
+  void average()
+  {
+    int add, n;
+    float avg;
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      system("cls");
+      add = sum();
+      n = counter();
+      avg = add / n;
+      cout << "Sum  = " << add << "\t Nodes  = " << n << "\t  Average  =  " << avg << endl;
+    }
+  }
 };
 
 int main()
 {
   List la;
-  int choice, insert, search, i;
+  int choice, insert, search, i, sum = 0;
   char ch;
   while (1)
   {
     system("cls");
-    cout << "1. Insert At First" << endl
-         << "2. Insert Above any value" << endl
-         << "3. Insert At Last" << endl
-         << "4. Insert At position" << endl
-         << "5. Delete First" << endl
-         << "6. Delete Last" << endl
-         << "7. Searching" << endl
-         << "8. Show" << endl
-         << "9. Count Nodes" << endl
-         << "10. Exit" << endl;
+    cout << "1.  Insert At First" << endl
+         << "2.  Insert Above any value" << endl
+         << "3.  Insert At Last" << endl
+         << "4.  Insert At position" << endl
+         << "5.  Delete First" << endl
+         << "6.  Delete Last" << endl
+         << "7.  Searching" << endl
+         << "8.  Show" << endl
+         << "9.  Count Nodes" << endl
+         << "10. Exit" << endl
+         << "11. Sum of All list" << endl
+         << "12. Average of list" << endl;
     cout << "\n Enter your choice" << endl;
     cin >> choice;
 
@@ -300,6 +337,14 @@ int main()
       break;
     case 10:
       return 0;
+    case 11:
+      sum = la.sum();
+      if (sum != 0)
+        cout << "Sum of Linked list data is " << sum << endl;
+      break;
+    case 12:
+      la.average();
+      break;
     }
     ch = cin.get();
     ch = cin.get();
