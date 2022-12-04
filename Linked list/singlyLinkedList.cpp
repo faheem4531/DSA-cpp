@@ -39,7 +39,7 @@ public:
     else
     {
       Node *currNode = head;
-      cout << "Your List Data is: " << endl;
+      cout << "\n \t \t Your List Data is: " << endl;
       do
       {
         cout << currNode->data << "\t";
@@ -132,6 +132,31 @@ public:
       // Can we call our searching function (which is returning a node) in insertAtMid function's arguments and deal as a node by inserting above of it
       //  Print the store node's data and address(that should contain's the node returning from the searching function)
     }
+  }
+  void instertAtPosition(int data)
+  {
+    Node *newNode = new Node(data, NULL);
+    Node *posNode = head;
+    int i = 1, pos;
+    if (head == NULL)
+    {
+      head = newNode;
+    }
+    else
+    {
+      cout << "Your list contain " << counter() << " items " << endl;
+      cout << "Enter the position where you want to insert" << endl;
+      cin >> pos;
+      while (i < pos)
+      {
+        posNode = posNode->next;
+        i++;
+      }
+      newNode->next = posNode->next;
+      posNode->next = newNode;
+    }
+
+    traversing();
   }
   void insertLast(int data) //                                                  Insert at last
   {
@@ -250,7 +275,9 @@ int main()
       la.insertLast(insert);
       break;
     case 4:
-
+      cout << "Enter the value you want to insert" << endl;
+      cin >> insert;
+      la.instertAtPosition(insert);
       break;
     case 5:
       la.deleteAtFirst();
