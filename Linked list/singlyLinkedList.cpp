@@ -48,6 +48,31 @@ public:
       cout << endl;
     }
   }
+  void checkValue(int value) // To check searched value exist or not
+  {
+    Node *testNode = head;
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      do
+      {
+        if (value == testNode->data)
+        {
+          cout << "Value Found" << endl;
+          return;
+        }
+        else
+        {
+          testNode = testNode->next;
+        }
+
+      } while (testNode != NULL);
+      cout << "Value not found" << endl;
+    }
+  }
   void insertAtHead(int data)
   {
     Node *newNode = new Node(data, NULL);
@@ -59,6 +84,53 @@ public:
     {
       newNode->next = head;
       head = newNode;
+    }
+  }
+  Node searching(int value) // this searching function is for insert-delete for specific node
+  {
+    if (head == NULL)
+    {
+      cout << "Your list is Empty" << endl;
+    }
+    else
+    {
+      Node *nextNode = head;
+      Node *preNode = head;
+      do
+      {
+        if (value == nextNode->data)
+        {
+          return *preNode; // It will return the node of the searched value
+        }
+        else
+        {
+          preNode = nextNode;
+          nextNode = nextNode->next;
+        }
+      } while (nextNode->next != NULL);
+
+      cout << "value not found" << endl;
+    }
+  }
+  void insertAtMid()
+  {
+    int value, item;
+    Node *store; // this will store the returned functions node
+    cout << "Enter the value you want to insert " << endl;
+    cin >> value;
+    Node *newNode = new Node(value, NULL);
+    if (head == NULL)
+    {
+      head = newNode;
+    }
+    else
+    {
+      cout << "Enter the value you want to insert above of it" << endl;
+      cin >> item;
+      // store = searching(item); // as the search function return a node whose data type is Node and that returning node should be in store Node(with the same Node data type).
+
+      // Can we call our searching function (which is returning a node) in insertAtMid function's arguments and deal as a node by inserting above of it
+      //  Print the store node's data and address(that should contain's the node returning from the searching function)
     }
   }
   void insertLast(int data) //                                                  Insert at last
@@ -119,22 +191,45 @@ public:
       }
     }
   }
+  int counter()
+  {
+    Node *currNode = head;
+    int count = 0;
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      do
+      {
+        count++;
+        currNode = currNode->next;
+
+      } while (currNode != NULL);
+    }
+    return count;
+  }
 };
 
 int main()
 {
   List la;
-  int choice, insert;
+  int choice, insert, search, i;
   char ch;
   while (1)
   {
     system("cls");
     cout << "1. Insert At First" << endl
-         << "2. Insert At Last" << endl
-         << "3. Delate First" << endl
-         << "4. Delete Last" << endl
-         << "5. Show" << endl
-         << "6. Exit" << endl;
+         << "2. Insert Above any value" << endl
+         << "3. Insert At Last" << endl
+         << "4. Insert At position" << endl
+         << "5. Delete First" << endl
+         << "6. Delete Last" << endl
+         << "7. Searching" << endl
+         << "8. Show" << endl
+         << "9. Count Nodes" << endl
+         << "10. Exit" << endl;
     cout << "\n Enter your choice" << endl;
     cin >> choice;
 
@@ -146,38 +241,40 @@ int main()
       la.insertAtHead(insert);
       break;
     case 2:
+      cout << "Yet not ready to run" << endl;
+      // la.insertAtMid();
+      break;
+    case 3:
       cout << "Enter the value you want to insert" << endl;
       cin >> insert;
       la.insertLast(insert);
       break;
-    case 3:
-      la.deleteAtFirst();
-      break;
     case 4:
-      la.deleteAtLast();
+
       break;
     case 5:
-      la.traversing();
+      la.deleteAtFirst();
       break;
     case 6:
+      la.deleteAtLast();
+      break;
+    case 7:
+      cout << "Enter the value you want to search" << endl;
+      cin >> search;
+      la.checkValue(search);
+      break;
+    case 8:
+      la.traversing();
+      break;
+    case 9:
+      i = la.counter();
+      if (i != 0)
+        cout << "your List contain  " << i << " Nodes/Values" << endl;
+      break;
+    case 10:
       return 0;
     }
     ch = cin.get();
     ch = cin.get();
   }
-
-  // la.insertAtHead(10);
-  // la.traversing();
-  // cout << "\t first time\n \n";
-  // la.traversing();
-  // la.insertLast(22);
-  // la.insertLast(21);
-  // la.insertAtHead(30);
-  // la.insertLast(20);
-  // la.insertLast(19);
-  // cout << "\t second time\n \n";
-  // la.traversing();
-  // la.insertAtHead(1);
-  // cout << "\t third time\n \n";
-  // la.traversing();
 }
