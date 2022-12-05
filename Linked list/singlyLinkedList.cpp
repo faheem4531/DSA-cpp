@@ -99,9 +99,7 @@ public:
       {
         if (value == nextNode->data)
         {
-          cout << nextNode->data << "\t" << nextNode->next << endl
-               << " From store " << endl;
-          return nextNode; // It will return the node of the searched value
+          return nextNode;
         }
         else
         {
@@ -115,10 +113,10 @@ public:
   void insertAtMid()
   {
     int value, item;
-    Node *store; // this will store the returned functions node
-    // cout << "Enter the value you want to insert " << endl;
-    // cin >> value;
+    cout << "Enter the value you want to insert " << endl;
+    cin >> value;
     Node *newNode = new Node(value, NULL);
+    Node *store;
     if (head == NULL)
     {
       head = newNode;
@@ -128,6 +126,12 @@ public:
       cout << "Enter the value you want to insert above of it" << endl;
       cin >> item;
       store = searching(item);
+      // cout << "store data \t" << store->data << "\t" << store->next << endl;
+      newNode->next = store->next;
+      store->next = newNode;
+      // cout << "newNode data \t" << newNode->data << "\t" << newNode->next << endl;
+      // cout << "store data \t" << store->data << "\t" << store->next << endl;
+      traversing();
     }
   }
   void instertAtPosition(int data)
@@ -301,7 +305,6 @@ int main()
       la.insertAtHead(insert);
       break;
     case 2:
-      // cout << "Yet not ready to run" << endl;
       la.insertAtMid();
       break;
     case 3:
