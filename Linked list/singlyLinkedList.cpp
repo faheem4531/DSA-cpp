@@ -86,7 +86,7 @@ public:
       head = newNode;
     }
   }
-  Node searching(int value) // this searching function is for insert-delete for specific node
+  Node *searching(int value) // this searching function is for insert-delete for specific node
   {
     if (head == NULL)
     {
@@ -95,19 +95,19 @@ public:
     else
     {
       Node *nextNode = head;
-      Node *preNode = head;
       do
       {
         if (value == nextNode->data)
         {
-          return *preNode; // It will return the node of the searched value
+          cout << nextNode->data << "\t" << nextNode->next << endl
+               << " From store " << endl;
+          return nextNode; // It will return the node of the searched value
         }
         else
         {
-          preNode = nextNode;
           nextNode = nextNode->next;
         }
-      } while (nextNode->next != NULL);
+      } while (nextNode != NULL);
 
       cout << "value not found" << endl;
     }
@@ -116,8 +116,8 @@ public:
   {
     int value, item;
     Node *store; // this will store the returned functions node
-    cout << "Enter the value you want to insert " << endl;
-    cin >> value;
+    // cout << "Enter the value you want to insert " << endl;
+    // cin >> value;
     Node *newNode = new Node(value, NULL);
     if (head == NULL)
     {
@@ -127,10 +127,7 @@ public:
     {
       cout << "Enter the value you want to insert above of it" << endl;
       cin >> item;
-      // store = searching(item); // as the search function return a node whose data type is Node and that returning node should be in store Node(with the same Node data type).
-
-      // Can we call our searching function (which is returning a node) in insertAtMid function's arguments and deal as a node by inserting above of it
-      //  Print the store node's data and address(that should contain's the node returning from the searching function)
+      store = searching(item);
     }
   }
   void instertAtPosition(int data)
@@ -286,12 +283,13 @@ int main()
          << "4.  Insert At position" << endl
          << "5.  Delete First" << endl
          << "6.  Delete Last" << endl
-         << "7.  Searching" << endl
-         << "8.  Show" << endl
-         << "9.  Count Nodes" << endl
-         << "10. Exit" << endl
-         << "11. Sum of All list" << endl
-         << "12. Average of list" << endl;
+         << "7.  Delete by Value" << endl
+         << "8.  Searching" << endl
+         << "9.  Sum of All list" << endl
+         << "10. Average of list" << endl
+         << "11. Count Values" << endl
+         << "12. Show" << endl
+         << "13. Exit" << endl;
     cout << "\n Enter your choice" << endl;
     cin >> choice;
 
@@ -303,8 +301,8 @@ int main()
       la.insertAtHead(insert);
       break;
     case 2:
-      cout << "Yet not ready to run" << endl;
-      // la.insertAtMid();
+      // cout << "Yet not ready to run" << endl;
+      la.insertAtMid();
       break;
     case 3:
       cout << "Enter the value you want to insert" << endl;
@@ -323,28 +321,33 @@ int main()
       la.deleteAtLast();
       break;
     case 7:
-      cout << "Enter the value you want to search" << endl;
+      cout << "Enter searched value" << endl;
+      cin >> search;
+      la.searching(search);
+      break;
+    case 8:
+      cout << "Enter the value you want to Check Availiblity" << endl;
       cin >> search;
       la.checkValue(search);
       break;
-    case 8:
-      la.traversing();
-      break;
     case 9:
-      i = la.counter();
-      if (i != 0)
-        cout << "your List contain  " << i << " Nodes/Values" << endl;
-      break;
-    case 10:
-      return 0;
-    case 11:
       sum = la.sum();
       if (sum != 0)
         cout << "Sum of Linked list data is " << sum << endl;
       break;
-    case 12:
+    case 10:
       la.average();
       break;
+    case 11:
+      i = la.counter();
+      if (i != 0)
+        cout << "your List contain  " << i << " Nodes/Values" << endl;
+      break;
+    case 12:
+      la.traversing();
+      break;
+    case 13:
+      return 0;
     }
     ch = cin.get();
     ch = cin.get();
