@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-//******************  Node class
+//******************                                                          Node class
 class Node
 {
   int data;
@@ -34,7 +34,7 @@ public:
   {
     if (head == NULL)
     {
-      cout << "List is Empty" << endl;
+      cout << " List is Empty" << endl;
     }
     else
     {
@@ -85,8 +85,9 @@ public:
       newNode->next = head;
       head = newNode;
     }
+    traversing();
   }
-  Node *searching(int value) // this searching function is for insert-delete for specific node
+  Node *searching(int value) // this searching function is for insert for specific node
   {
     if (head == NULL)
     {
@@ -99,7 +100,7 @@ public:
       {
         if (value == nextNode->data)
         {
-          return nextNode;
+          return nextNode; // return the node of given value, so that new value insert after it
         }
         else
         {
@@ -126,11 +127,8 @@ public:
       cout << "Enter the value you want to insert above of it" << endl;
       cin >> item;
       store = searching(item);
-      // cout << "store data \t" << store->data << "\t" << store->next << endl;
       newNode->next = store->next;
       store->next = newNode;
-      // cout << "newNode data \t" << newNode->data << "\t" << newNode->next << endl;
-      // cout << "store data \t" << store->data << "\t" << store->next << endl;
       traversing();
     }
   }
@@ -176,6 +174,7 @@ public:
       }
       currentNode->next = newNode;
     }
+    traversing();
   }
   void deleteAtFirst()
   {
@@ -188,6 +187,7 @@ public:
     {
       head = head->next;
       delete newnode;
+      traversing();
     }
   }
   void deleteAtLast()
@@ -215,6 +215,39 @@ public:
         delete nextNode;
         preNode->next = NULL;
       }
+      traversing();
+    }
+  }
+  void deleteByValue()
+  {
+    int value;
+    Node *preNode = head;
+    cout << "Enter the value you want to delete" << endl;
+    cin >> value;
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      Node *preNode = head;
+      Node *nextNode = head;
+      while (nextNode != NULL)
+      {
+        if (value == nextNode->data)
+        {
+          preNode->next = nextNode->next;
+          delete nextNode;
+          traversing();
+          return;
+        }
+        else
+        {
+          preNode = nextNode;
+          nextNode = nextNode->next;
+        }
+      }
+      cout << "Value not Found" << endl;
     }
   }
   int counter()
@@ -324,9 +357,7 @@ int main()
       la.deleteAtLast();
       break;
     case 7:
-      cout << "Enter searched value" << endl;
-      cin >> search;
-      la.searching(search);
+      la.deleteByValue();
       break;
     case 8:
       cout << "Enter the value you want to Check Availiblity" << endl;
@@ -356,3 +387,4 @@ int main()
     ch = cin.get();
   }
 }
+//*************************            Code End               *************************
