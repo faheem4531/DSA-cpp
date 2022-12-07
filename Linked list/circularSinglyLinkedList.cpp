@@ -53,9 +53,18 @@ public:
       cout << endl;
     }
   }
+  Node *tailFind()
+  {
+    Node *tailNode = head;
+    while (tailNode->link != head)
+    {
+      tailNode = tailNode->link;
+    }
+    return tailNode;
+  }
   void insertAtHead(int value)
   {
-    Node *currNode = head;
+    Node *lastNode;
     Node *newNode = new Node(value, head);
     if (head == NULL)
     {
@@ -64,9 +73,8 @@ public:
     }
     else
     {
-      while (currNode->link != head)
-        currNode = currNode->link;
-      currNode->link = newNode;
+      lastNode = tailFind(); //  return the last node from the list
+      lastNode->link = newNode;
       newNode->link = head;
       head = newNode;
     }
@@ -82,12 +90,8 @@ public:
     }
     else
     {
-      Node *currNode = head;
-      do
-      {
-        currNode = currNode->link;
-      } while (currNode->link != head);
-      currNode->link = newNode;
+      Node *lastNode = tailFind();
+      lastNode->link = newNode;
       newNode->link = head;
     }
     traversing();
@@ -95,7 +99,6 @@ public:
   void deleteHead()
   {
     Node *temp = head;
-    Node *currNode = head;
 
     if (head == NULL)
     {
@@ -110,11 +113,8 @@ public:
       }
       else
       {
-        do
-        {
-          currNode = currNode->link;
-        } while (currNode->link != head);
-        currNode->link = head->link;
+        Node *lastNode = tailFind();
+        lastNode->link = head->link;
         head = head->link;
         temp = NULL;
         delete temp;
