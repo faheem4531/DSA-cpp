@@ -3,7 +3,6 @@ In circular linked list there is no null cz last node is linked with the head of
 So The only change of circular is insert/delete at head or last
 rest of all the functions will be same
 */
-
 #include <iostream>
 using namespace std;
 //                                                            Node Class
@@ -44,7 +43,8 @@ public:
     else
     {
       Node *currNode = head;
-      cout << "Your Data in List " << endl;
+      cout << "-------------------------------------------------------------------" << endl;
+      cout << "\t \t Your Data in List " << endl;
       do
       {
         cout << currNode->data << "\t";
@@ -56,7 +56,7 @@ public:
   void insertAtHead(int value)
   {
     Node *currNode = head;
-    Node *newNode = new Node(value, NULL);
+    Node *newNode = new Node(value, head);
     if (head == NULL)
     {
       head = newNode;
@@ -64,12 +64,11 @@ public:
     }
     else
     {
-      do
-      {
+      while (currNode->link != head)
         currNode = currNode->link;
-      } while (currNode->link != head);
-      newNode->link = head;
       currNode->link = newNode;
+      newNode->link = head;
+      head = newNode;
     }
     traversing();
   }
@@ -92,6 +91,63 @@ public:
       newNode->link = head;
     }
     traversing();
+  }
+  void deleteHead()
+  {
+    Node *temp = head;
+    Node *currNode = head;
+
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      if (head->link == head)
+      {
+        head = NULL;
+        delete head;
+      }
+      else
+      {
+        do
+        {
+          currNode = currNode->link;
+        } while (currNode->link != head);
+        currNode->link = head->link;
+        head = head->link;
+        temp = NULL;
+        delete temp;
+      }
+      traversing();
+    }
+  }
+  void deleteLast()
+  {
+    Node *nextNode = head;
+    Node *preNode = head;
+    if (head == NULL)
+      cout << "List is Empty" << endl;
+    else
+    {
+      if (head->link == head)
+      {
+        head = NULL;
+        delete head;
+      }
+      else
+      {
+        while (nextNode->link != head)
+        {
+          preNode = nextNode;
+          nextNode = nextNode->link;
+        }
+        preNode->link = head;
+        nextNode = NULL;
+        delete nextNode;
+      }
+      traversing();
+    }
   }
 };
 
@@ -125,12 +181,10 @@ int main()
       obj.insertAtLast(insert);
       break;
     case 3:
-      cout << "Enter the value you want to Delete" << endl;
-      cin >> insert;
+      obj.deleteHead();
       break;
     case 4:
-      cout << "Enter the value you want to Delete" << endl;
-      cin >> insert;
+      obj.deleteLast();
       break;
     case 5:
       obj.traversing();
@@ -142,3 +196,4 @@ int main()
     ch = cin.get();
   }
 }
+//*************************            Code End               *************************
