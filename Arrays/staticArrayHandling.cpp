@@ -1,4 +1,4 @@
-//                This expanded menue program is just to understand array handling or functions as well- @MUSHAB_FAHEEM
+//         This expanded menue program is just to understand array handling or functions as well- @MUSHAB_FAHEEM
 #include <iostream>
 using namespace std;
 
@@ -11,6 +11,7 @@ int linearHub();
 int binaryHub();
 void searcher();
 int searchDistributer(int, int);
+void sortingMenue();
 //********************************    Global variable
 int n;
 //********************************    Class
@@ -87,9 +88,10 @@ public:
     }
     n--;
   }
-  void sortingArray()
+  void bubbleSorting()
   {
     // char ch;
+
     for (int counter = 1; counter < n; counter++)
     {
       for (int i = 0; i < n - counter; i++)
@@ -103,9 +105,26 @@ public:
         }
       }
     }
-    cout << "Your Array has been sorted press ENTER to continue" << endl;
+    cout << "Your Array has been BUBBLE Sort... \n \t \t \t \t Press ENTER to continue" << endl;
     // ch = cin.get();
     // ch = cin.get();
+  }
+  void selectionSorting()
+  {
+    for (int i = 0; i < n - 1; i++)
+    {
+      int min = i;
+      for (int j = i + 1; j < n; j++)
+      {
+        if (array[min] > array[j])
+          min = j;
+      }
+      swap(array[min], array[i]);
+      // int temp = array[min];
+      // array[min] = array[i];
+      // array[i] = temp;
+    }
+    cout << "Your Array has been Selection Sort... \n \t \t \t \t Press ENTER to continue" << endl;
   }
   void updation(int x)
   {
@@ -258,7 +277,7 @@ int binarySearcher(int searchItem) //                                    Binary 
     cout << "ErRoR! \t Your array is not Sorted press enter to arrange ..." << endl;
     ch = cin.get();
     ch = cin.get();
-    la.sortingArray();
+    la.bubbleSorting();
     itemIndex = la.binarySearcherEmulator(searchItem);
     return itemIndex;
   }
@@ -300,6 +319,35 @@ int searchDistributer(int x, int value)
   return index;
 }
 
+void sortingMenue()
+{
+  int choice;
+  char ch;
+  while (1)
+  {
+    system("cls");
+    cout << "Which Sorting do you want to go for..." << endl;
+    cout << endl
+         << "1. Bubble Sorting" << endl
+         << "2. Selection Sorting" << endl
+         << "3. Return" << endl;
+    cout << "\n Enter your choice \t";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+      la.bubbleSorting();
+      break;
+    case 2:
+      la.selectionSorting();
+    case 3:
+      return;
+    }
+    ch = cin.get();
+    ch = cin.get();
+  }
+}
+
 int linearHub()
 {
   int choice;
@@ -328,7 +376,7 @@ int linearHub()
       la.setArray();
       break;
     case 3:
-      la.sortingArray();
+      sortingMenue();
       break;
     case 4:
       insertMenue();
@@ -381,7 +429,7 @@ int binaryHub()
       la.setArray();
       break;
     case 3:
-      la.sortingArray();
+      sortingMenue();
       break;
     case 4:
       insertMenue();
