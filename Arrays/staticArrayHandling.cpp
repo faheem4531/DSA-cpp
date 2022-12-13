@@ -126,6 +126,19 @@ public:
     }
     cout << "Your Array has been Selection Sort... \n \t \t \t \t Press ENTER to continue" << endl;
   }
+  void insertionSorting()
+  {
+    for (int i = 0; i < n - 1; i++)
+    {
+      int j = i + 1;
+      while (j > 0 && array[j] < array[j - 1])
+      {
+        swap(array[j], array[j - 1]);
+        j--;
+      }
+    }
+    cout << "Your Array is sorted by Insertion Sorting. \n \t \t \t \t Press ENTER to continue" << endl;
+  }
   void updation(int x)
   {
     int item, newItem, index;
@@ -330,7 +343,8 @@ void sortingMenue()
     cout << endl
          << "1. Bubble Sorting" << endl
          << "2. Selection Sorting" << endl
-         << "3. Return" << endl;
+         << "3. Insertion Sorting" << endl
+         << "4. Return" << endl;
     cout << "\n Enter your choice \t";
     cin >> choice;
     switch (choice)
@@ -341,6 +355,9 @@ void sortingMenue()
     case 2:
       la.selectionSorting();
     case 3:
+      la.insertionSorting();
+      break;
+    case 4:
       return;
     }
     ch = cin.get();
