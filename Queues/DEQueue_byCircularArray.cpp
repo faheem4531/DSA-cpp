@@ -90,7 +90,7 @@ public:
       cout << "Queue is Empty" << endl;
       return;
     }
-    cout << "Element deleted from the Front is : " << arr[f] << endl;
+    cout << "Element Deleted from the Front is : " << arr[f] << endl;
     if (f == r)
       f = r = -1;
     else
@@ -104,6 +104,22 @@ public:
   }
   void delete_rear(int size)
   {
+    if (f == -1)
+    {
+      cout << "Queue is Empty" << endl;
+      return;
+    }
+    cout << "Element Deleted from Rear is : " << arr[r] << endl;
+    if (r == f)
+      f = r = -1;
+    else
+    {
+      if (r == 0)
+        r = size - 1;
+      else
+        r--;
+    }
+    display(size);
   }
 };
 
