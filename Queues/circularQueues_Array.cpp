@@ -79,6 +79,49 @@ public:
     }
     displayCQ(size);
   }
+  void searchingCQ(int size)
+  {
+    int value;
+    if (f == -1)
+      cout << "Queue is Empty" << endl;
+    else
+    {
+      cout << "Enter the value you want to Search " << endl;
+      cin >> value;
+      if (f <= r)
+      {
+        for (int i = f; i <= r; i++)
+        {
+          if (arr[i] == value)
+          {
+            cout << "Your Seacrhed value found at " << i << endl;
+            return;
+          }
+        }
+        cout << "Value not Found" << endl;
+      }
+      else if (f > r)
+      {
+        for (int i = f; i < size; i++)
+        {
+          if (arr[i] == value)
+          {
+            cout << "Your Searched value found at " << i << endl;
+            return;
+          }
+        }
+        for (int i = 0; i <= r; i++)
+        {
+          if (arr[i] == value)
+          {
+            cout << "Your Seacrhed value found at " << i << endl;
+            return;
+          }
+        }
+        cout << "Value not Found" << endl;
+      }
+    }
+  }
 };
 
 //                                                 Main
@@ -95,7 +138,8 @@ int main()
     cout << "1. EnQueue" << endl
          << "2. DeQueue" << endl
          << "3. Display" << endl
-         << "4. Exit" << endl;
+         << "4. Searching" << endl
+         << "5. Exit" << endl;
     cout << "\n \t Enter your choice \t";
     cin >> choice;
     switch (choice)
@@ -110,6 +154,9 @@ int main()
       obj.displayCQ(size);
       break;
     case 4:
+      obj.searchingCQ(size);
+      break;
+    case 5:
       return 0;
     }
     ch = cin.get();
