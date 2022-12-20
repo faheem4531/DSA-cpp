@@ -60,6 +60,29 @@ public:
     arr[r] = item;
     display(size);
   }
+  void insert_front(int size)
+  {
+    int item;
+    int rare;
+    if (((r + 1) % size) == f)
+    {
+      cout << "Queue is Full" << endl;
+      return;
+    }
+    cout << "Enter the value you want to insert at Head" << endl;
+    cin >> item;
+    if (f == -1)
+      f = r = 0;
+    else
+    {
+      if (f == 0)
+        f = size - 1;
+      else
+        f--;
+    }
+    arr[f] = item;
+    display(size);
+  }
   void delete_front(int size)
   {
     if (f == -1)
@@ -79,48 +102,8 @@ public:
     }
     display(size);
   }
-  void searchingCQ(int size)
+  void delete_rear(int size)
   {
-    int value;
-    if (f == -1)
-      cout << "Queue is Empty" << endl;
-    else
-    {
-      cout << "Enter the value you want to Search " << endl;
-      cin >> value;
-      if (f <= r)
-      {
-        for (int i = f; i <= r; i++)
-        {
-          if (arr[i] == value)
-          {
-            cout << "Your Seacrhed value found at " << i << endl;
-            return;
-          }
-        }
-        cout << "Value not Found" << endl;
-      }
-      else if (f > r)
-      {
-        for (int i = f; i < size; i++)
-        {
-          if (arr[i] == value)
-          {
-            cout << "Your Searched value found at " << i << endl;
-            return;
-          }
-        }
-        for (int i = 0; i <= r; i++)
-        {
-          if (arr[i] == value)
-          {
-            cout << "Your Seacrhed value found at " << i << endl;
-            return;
-          }
-        }
-        cout << "Value not Found" << endl;
-      }
-    }
   }
 };
 
@@ -135,11 +118,12 @@ int main()
   while (1)
   {
     system("cls");
-    cout << "1. EnQueue from Rear" << endl
-         << "2. DeQueue from Front" << endl
-         << "3. Display" << endl
-         << "4. Searching" << endl
-         << "5. Exit" << endl;
+    cout << "1. EnQueue from Rear  (End)" << endl
+         << "2. EnQueue from Front (Head)" << endl
+         << "3. DeQueue from Rear  (End)" << endl
+         << "4. DeQueue from Front (Head)" << endl
+         << "5. Display" << endl
+         << "6. Exit" << endl;
     cout << "\n \t Enter your choice \t";
     cin >> choice;
     switch (choice)
@@ -148,18 +132,22 @@ int main()
       obj.insert_rear(size);
       break;
     case 2:
-      obj.delete_front(size);
+      obj.insert_front(size);
       break;
     case 3:
-      obj.display(size);
+      obj.delete_rear(size);
       break;
     case 4:
-      obj.searchingCQ(size);
+      obj.delete_front(size);
       break;
     case 5:
+      obj.display(size);
+      break;
+    case 6:
       return 0;
     }
     ch = cin.get();
     ch = cin.get();
   }
 }
+//******************                                      Code End                                       *********************
