@@ -11,24 +11,54 @@ public:
   Que(int n)
   {
     arr = new int[n];
-    f = r = -1;
+    f = -1;
+    r = -1;
   }
-  void display()
+  void display(int size)
   {
-    cout << "\n \t \t Data in your Queue " << endl;
     if (f == -1)
       cout << "Queue is Empty" << endl;
     else
     {
-      for (int i = f; i <= r; i++)
+      cout << "\n \t \t Data in your Queue " << endl;
+      if (f <= r)
       {
-        cout << arr[i] << "\t";
+        for (int i = f; i <= r; i++)
+          cout << arr[i] << "\t";
+        cout << endl;
       }
-      cout << endl;
+      else // f > r
+      {
+        for (int i = f; i < size; i++)
+          cout << arr[i] << "\t";
+        for (int i = 0; i <= r; i++)
+          cout << arr[i] << "\t";
+        cout << endl;
+      }
     }
   }
-  void insert()
+  void insert(int size)
   {
+    int item;
+    // if ((f == 0 && r == size - 1) || (f == r + 1))                               can be
+    if (((r + 1) % size) == f)
+    {
+      cout << "Queue is Full" << endl;
+      return;
+    }
+    cout << "Enter the value you want to insert" << endl;
+    cin >> item;
+    if (f == -1)
+      f = r = 0;
+    else
+    {
+      if (r == size - 1)
+        r = 0;
+      else
+        r++;
+    }
+    arr[r] = item;
+    display(size);
   }
 };
 
@@ -52,13 +82,13 @@ int main()
     switch (choice)
     {
     case 1:
-      // obj.insert(size);
+      obj.insert(size);
       break;
     case 2:
       // obj.dell();
       break;
     case 3:
-      // obj.display();
+      obj.display(size);
       break;
     case 4:
       return 0;
