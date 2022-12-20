@@ -14,7 +14,7 @@ public:
     f = -1;
     r = -1;
   }
-  void display(int size)
+  void displayCQ(int size)
   {
     if (f == -1)
       cout << "Queue is Empty" << endl;
@@ -37,16 +37,16 @@ public:
       }
     }
   }
-  void insert(int size)
+  void insertCQ(int size)
   {
     int item;
-    // if ((f == 0 && r == size - 1) || (f == r + 1))                               can be
+    // if ((f == 0 && r == size - 1) || (f == r + 1))                               can be other posibility
     if (((r + 1) % size) == f)
     {
       cout << "Queue is Full" << endl;
       return;
     }
-    cout << "Enter the value you want to insert" << endl;
+    cout << "Enter the value you want to   insert" << endl;
     cin >> item;
     if (f == -1)
       f = r = 0;
@@ -58,7 +58,26 @@ public:
         r++;
     }
     arr[r] = item;
-    display(size);
+    displayCQ(size);
+  }
+  void dellCQ(int size)
+  {
+    if (f == -1)
+    {
+      cout << "Queue is Empty" << endl;
+      return;
+    }
+    cout << "Element deleted from queue is : " << arr[f] << endl;
+    if (f == r)
+      f = r = -1;
+    else
+    {
+      if (f == size - 1)
+        f = 0;
+      else
+        f++;
+    }
+    displayCQ(size);
   }
 };
 
@@ -82,13 +101,13 @@ int main()
     switch (choice)
     {
     case 1:
-      obj.insert(size);
+      obj.insertCQ(size);
       break;
     case 2:
-      // obj.dell();
+      obj.dellCQ(size);
       break;
     case 3:
-      obj.display(size);
+      obj.displayCQ(size);
       break;
     case 4:
       return 0;
