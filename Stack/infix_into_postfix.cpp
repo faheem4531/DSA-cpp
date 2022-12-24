@@ -2,7 +2,7 @@
 #include "math.h"
 using namespace std;
 //                                                                Global Expression
-string postfix_Expression = "795-2*+";
+string postfix_Expression = "";
 //                                                                Class
 class infix_To_Postfix
 {
@@ -70,7 +70,7 @@ public:
       }
       else if (isOperator(ch))
       {
-        while (!isEmpty() && presedence(stack[top]) >= presedence(ch))
+        while (!isEmpty() && presedence(stack[top]) > presedence(ch)) // DOUBT--CAN BE EQUAL OR NOT BE
           postfix += pop();
         push(ch);
       }
