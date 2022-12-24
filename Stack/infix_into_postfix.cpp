@@ -84,7 +84,6 @@ public:
   {
     if (top == 30 - 1) // 30 is the size of your stack
     {
-      cout << "Stack overflow" << endl;
       return;
     }
     top = top + 1;
@@ -95,7 +94,6 @@ public:
     char c;
     if (top == -1)
     {
-      cout << "Stack Empty" << endl;
       return false;
     }
     c = stack[top];
@@ -162,7 +160,6 @@ public:
   {
     if (top == 30 - 1) // 30 is the size of your stack
     {
-      cout << "Stack overflow" << endl;
       return;
     }
     top = top + 1;
@@ -173,7 +170,6 @@ public:
     char c;
     if (top == -1)
     {
-      cout << "Stack Empty" << endl;
       return false;
     }
     c = stack[top];
