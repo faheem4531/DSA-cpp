@@ -49,7 +49,10 @@ public:
       cout << "Stack is Empty" << endl;
     else
     {
+      int temp;
+      temp = arr[top];
       top = top - 1;
+      cout << temp << "  pop out of stack" << endl;
       display();
     }
   }
