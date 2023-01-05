@@ -16,6 +16,22 @@ public:
   {
     head = NULL;
   }
+  Node *getTail()
+  {
+    Node *tail = head;
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      while (tail->next != NULL)
+      {
+        tail = tail->next;
+      }
+    }
+    return tail;
+  }
   void traversing()
   {
     if (head == NULL)
@@ -93,9 +109,12 @@ public:
       cout << "\n Enter the value you want to insert above of it." << endl;
       cin >> value;
       Node *search = Searching(value);
-      newNode->next = search->next;
-      newNode->prev = search;
-      search->next = newNode;
+      if (search != NULL)
+      {
+        newNode->next = search->next;
+        newNode->prev = search;
+        search->next = newNode;
+      }
     }
     traversing();
   }
@@ -116,6 +135,7 @@ public:
           currNode = currNode->next;
       } while (currNode != NULL);
       cout << "value not found" << endl;
+      return NULL;
     }
   }
   void delete_head()
@@ -162,28 +182,51 @@ public:
   void delete_by_value()
   {
     int value;
-    if (head == NULL)
+    if (head == NULL) //                                             If List is empty
     {
       cout << "List is empty" << endl;
     }
     else
     {
-      if (head->next == NULL)
+      cout << "Enter the value you want to delete" << endl;
+      cin >> value;
+      if (head->data == value) //                                     If head contain that value
       {
-        Node *temp = head;
-        delete temp;
-        head = NULL;
+        delete_head();
+        return;
       }
-      else
+      else if ((getTail())->data == value) //                          If tail contain that value
       {
-        cout << "Enter the value you want to delete" << endl;
-        cin >> value;
-        Node *search = Searching(value);
+        delete_last();
+        return;
+      }
+      Node *search = Searching(value); //                            If value is in between head and tail
+      if (search != NULL)
+      {
         search->prev->next = search->next;
         delete search;
       }
       traversing();
     }
+  }
+  int sum()
+  {
+    int sum = 0;
+    Node *currNode = head;
+    if (head == NULL)
+    {
+      cout << "List is Empty" << endl;
+    }
+    else
+    {
+      while (currNode != NULL)
+      {
+        sum = sum + currNode->data;
+        currNode = currNode->next;
+      }
+      return sum;
+    }
+    return 0;
   }
 };
 
@@ -202,10 +245,8 @@ int main()
          << "5.  Delete Last" << endl
          << "6.  Delete by Value" << endl
          << "7.  Sum of All list values" << endl
-         //  << "10. Average of list" << endl
-         //  << "11. Count Nodes" << endl
-         << "12. Show" << endl
-         << "13. Exit" << endl;
+         << "8.  Show" << endl
+         << "9.  Exit" << endl;
     cout << "\n Enter your choice" << endl;
     cin >> choice;
 
@@ -234,22 +275,14 @@ int main()
       obj.delete_by_value();
       break;
     case 7:
-      // sum = la.sum();
+      sum = obj.sum();
       if (sum != 0)
         cout << "Sum of Linked list data is " << sum << endl;
       break;
-    // case 10:
-    //   la.average();
-    //   break;
-    // case 11:
-    //   i = la.counter();
-    //   if (i != 0)
-    //     cout << "your List contain  " << i << " Nodes/Values" << endl;
-    //   break;
-    case 12:
+    case 8:
       obj.traversing();
       break;
-    case 13:
+    case 9:
       return 0;
     }
     ch = cin.get();
