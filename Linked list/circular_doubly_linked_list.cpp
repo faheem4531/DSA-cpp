@@ -88,6 +88,58 @@ public:
       newNode->next = head;
       head->pre = newNode;
     }
+    traversing();
+  }
+  void delete_from_head()
+  {
+    if (head == NULL)
+      cout << "List is Empty" << endl;
+    else
+    {
+      Node *temp = head;
+      if (head->next == head)
+      {
+        delete head;
+        head = NULL;
+      }
+      else
+      {
+        head->pre->next = head->next;
+        head->next->pre = head->pre;
+        head = head->next;
+        delete temp;
+        temp = NULL;
+      }
+      traversing();
+    }
+  }
+  void delete_frem_last()
+  {
+    if (head == NULL)
+      cout << "List is Empty" << endl;
+    else
+    {
+      if (head->next == head)
+      {
+        delete head;
+        head = NULL;
+      }
+      else
+      {
+        tail = get_tail();
+        Node *lastNode = tail;
+        tail->pre->next = head;
+        head->pre = tail->pre;
+        tail = tail->pre;
+        delete lastNode;
+        lastNode = NULL;
+        // {  Node *temp = head;     // Alternative method
+        // head->pre->pre->next = head;
+        // head->pre = head->pre->pre;
+        // delete temp;}
+      }
+      traversing();
+    }
   }
 };
 
@@ -103,7 +155,7 @@ int main()
          << "2.  Insert At Last" << endl
          << "3.  Delete From First" << endl
          << "4.  Delete From Last" << endl
-         << "5.  Show" << endl
+         << "5.  Display" << endl
          << "6.  Exit" << endl;
     cout << "\n Enter your choice" << endl;
     cin >> choice;
@@ -121,10 +173,10 @@ int main()
       obj.insert_at_last(insert);
       break;
     case 3:
-      // obj.deleteHead();
+      obj.delete_from_head();
       break;
     case 4:
-      // obj.deleteLast();
+      obj.delete_frem_last();
       break;
     case 5:
       obj.traversing();
